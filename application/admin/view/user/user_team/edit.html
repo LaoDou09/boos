@@ -1,0 +1,93 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('User_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-user_id" data-rule="required"  data-field="nickname" class="form-control" name="row[user_id]" type="text" value="{$row.user_id|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('User_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-user_name" class="form-control" name="row[user_name]" type="text" value="{$row.user_name|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Login_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-login_name" class="form-control" name="row[login_name]" type="text" value="{$row.login_name|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Parent1')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-parent1" class="form-control" name="row[parent1]" type="text" value="{$row.parent1|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Parent2')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-parent2" class="form-control" name="row[parent2]" type="text" value="{$row.parent2|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Parent3')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-parent3" class="form-control" name="row[parent3]" type="text" value="{$row.parent3|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Parent4')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-parent4" class="form-control" name="row[parent4]" type="text" value="{$row.parent4|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Parent5')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-parent5" class="form-control" name="row[parent5]" type="text" value="{$row.parent5|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Path')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-path" class="form-control " rows="5" name="row[path]" cols="50">{$row.path|htmlentities}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Agent1')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agent1" class="form-control" name="row[agent1]" type="text" value="{$row.agent1|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Agent2')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agent2" class="form-control" name="row[agent2]" type="text" value="{$row.agent2|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Agent3')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agent3" class="form-control" name="row[agent3]" type="text" value="{$row.agent3|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Agent4')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agent4" class="form-control" name="row[agent4]" type="text" value="{$row.agent4|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Agent5')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agent5" class="form-control" name="row[agent5]" type="text" value="{$row.agent5|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>
