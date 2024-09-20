@@ -15,10 +15,13 @@ class CheckUserBalance implements Middleware {
         $balances = app(FinanceBalanceService::class)->getUserBalance($user_info);
         $cash_order = $request['cash_order'];
         foreach($balances as $value){
-
             if($value['account_type'] == '10'){
                 if($value['balance'] < $cash_order['amount']){
-                    err('账户类型:'.$value['account_type'].'---余额不足');
+                    $content = '用户ID:'.$cash_order['user_id']
+                        .',账户类型:'.$value['account_type'].'不足'
+                        .',余额:'.$value['balance']
+                        .',交易额'.$cash_order['amount'];
+                    err($content);
                 }
             }
 

@@ -71,5 +71,10 @@ class Six extends Api {
         $this->ok($ret);
 
     }
-    
+    public function test4(){
+        $ret = model(FinanceCashOrder::class)
+            ->limit(4,10)
+            ->select();
+        $this->ok($ret);
+    }
 }

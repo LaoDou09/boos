@@ -37,4 +37,34 @@ class FinanceCashOrder extends Backend
     public function del($ids = NULL){$this->error();}
     public function multi($ids = NULL){$this->error();}
 
+
+    public function index(){
+        $this->request->filter(['strip_tags']);
+        if ($this->request->isAjax()) {
+            //如果发送的来源是Selectpage，则转发到Selectpage
+            if ($this->request->request('keyField')) {
+                return $this->selectpage();
+            }
+
+            list($where, $sort, $order, $offset, $limit) = $this->buildparams();
+            $total = $this->model->where($where)->count();
+            $list = $this->model->where($where)->order($sort,$order)->limit($offset,$limit)->select();
+            $list = collection($list)->toArray();
+
+            //增加一行数据
+            $sum_field = 'SUM(amount) as amount';
+            $sum = $this->model->where($where)->field($sum_field)->find();
+            $sum = $sum?($sum->toArray()):[];
+            $sum['id'] = '合计';
+            $sum['remark']='';
+            $list[] = $sum;
+            $result = array("total" => $total, "rows" => $list);
+            return json($result);
+            
+        }
+        return $this->view->fetch();
+
+    }
+
+
 }

@@ -107,5 +107,9 @@ class One extends Api {
 
         $this->ok($data);     
     }
+    public function test10(){
+        $time = date('Y-m-d',strtotime('-6 day'));
+        $this->ok($time);
+    }
 
 }

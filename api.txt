@@ -1,9 +1,0 @@
-/api/user/thirdTokenLogin
-/api/finance/finance_balance/getUserBalance
-/api/user/user_level/getLevelList 
-/api/user/user_level/getLevelById  post:id:level_system_id
-/api/user/user/user_level/buyLevel    pose:id:level_system_id,promotion_code
-/api/finance/finance_book_order/getBookOrder  //这里要设计分页
-
-
-/api/finance/finance_transfer/trans20ToUser 

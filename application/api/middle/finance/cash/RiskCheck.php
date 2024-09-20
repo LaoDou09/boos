@@ -10,7 +10,7 @@ class RiskCheck implements Middleware {
 
     public function handle($request, Closure $next){
         //根据记账码检查风控
-        //todo 还没考虑好怎么写
+        //可控风控 true false
         if($request['risk_check']){
             $request = app(FinanceRiskService::class)->check($request['book_code'],$request);
         }

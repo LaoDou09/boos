@@ -26,8 +26,7 @@ class ReleaseCoupon extends Command {
         $this->dict = model(UserLevelDict::class)->where('level_key','user_level')->select();
         Log::info("ReleaseCoupon Start");
         model(UserReleaseCoupon::class)->where('next_date',date('Y-m-d'))
-            ->chunk(10,function($records)use($output){
-            
+            ->chunk(200,function($records)use($output){
             foreach($records as $record){
               try {
                 $result = $this->releaseCoupon($record,$output);

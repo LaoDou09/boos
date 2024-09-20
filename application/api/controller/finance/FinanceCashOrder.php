@@ -12,19 +12,23 @@ class FinanceCashOrder extends Api {
     public function getCashOrder(){
         //todo需要验证
         $userInfo = getUserInfo();
+        $page = $this->request->post('page');
+        $page = $page?$page:1;
         $order = model(CashOrder::class)
             ->where('user_id',$userInfo['user_id'])
-            ->limit(10)
+            ->limit($page,10)
             ->order('id','desc')
             ->select();
         $this->ok($order);
     }
 
     public function getToUserOrder(){
+        $page = $this->request->post('page');
+        $page = $page?$page:1;
         $userInfo = getUserInfo();
         $order = model(CashOrder::class)
             ->where('to_user_id',$userInfo['user_id'])
-            ->limit(10)
+            ->limit($page,10)
             ->order('id','desc')
             ->select();
         $this->ok($order);   

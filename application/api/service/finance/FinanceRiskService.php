@@ -2,11 +2,10 @@
 namespace app\api\service\finance;
 
 use app\admin\model\finance\FinanceRiskTemplate;
-use think\Log;
 
 class FinanceRiskService {
 
-
+    //风控检查入口
     public function check($book_code,$request){
         $risks = model(FinanceRiskTemplate::class)
             ->where('book_code',$book_code)

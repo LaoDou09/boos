@@ -43,9 +43,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'rights3', title: __('Rights3'), operate: 'LIKE'},
                         {field: 'rights4', title: __('Rights4'), operate: 'LIKE'},
                         {field: 'rights5', title: __('Rights5'), operate: 'LIKE'},
-                        {field: 'image1', title: __('Image1'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
-                        {field: 'image2', title: __('Image2'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
-                        {field: 'image3', title: __('Image3'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
+                        {field: 'image1', title: __('Image1'), events: Table.api.events.image, formatter: Table.api.formatter.image, operate: false},
+                        {field: 'image2', title: __('Image2'), events: Table.api.events.image, formatter: Table.api.formatter.image, operate: false},
+                        {field: 'image3', title: __('Image3'), events: Table.api.events.image, formatter: Table.api.formatter.image, operate: false},
                         {field: 'create_time', title: __('Create_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false},
                         {field: 'update_time', title: __('Update_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}

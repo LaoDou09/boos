@@ -61,7 +61,7 @@ class BookOrderProcess implements Middleware {
             }else{
                 //模板记账
                 Log::info('-----模板记账开始-----::');
-                //这里一定要new出新的收银单
+                //这里一定要new出新的收银单,防止单实例情况
                 $order = new FinanceBookOrder();
                 $order['book_title'] = $template['book_title'];
                 $order['account_id'] = $this->getAccountId($template);
