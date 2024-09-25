@@ -15,8 +15,7 @@ class CheckUser91Balance implements Middleware {
         //这样获取user_info 的原因是cli任务中没有auth
         // $userInfo = getUserInfo();
         $cash_order = $request['cash_order'];
-        $user_info = model(UserInfo::class)->getByUserId($cash_order['user_id']);
-        $balances = app(FinanceBalanceService::class)->getUserBalance($user_info);
+        $balances = app(FinanceBalanceService::class)->getUserBalance($request['user_id']);
         foreach($balances as $value){
 
             if($value['account_type'] == '91'){

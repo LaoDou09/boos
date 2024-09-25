@@ -40,17 +40,15 @@ class FinanceBalanceService {
         }
 
     }
-    
 
 
-    public function getUserBalance(UserInfo $userInfo){
+    public function getUserBalance($user_id){
 
         $balance = model(FinanceBalance::class)
-            ->where('process_id',$userInfo['user_id'])
+            ->where('process_id',$user_id)
             ->select();
         return $balance;
     }
-
 
     //
     public function updateBalance($book_orders){

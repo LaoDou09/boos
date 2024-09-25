@@ -23,7 +23,7 @@ class RequestCarSys implements Middleware {
         ]; 
         $ret = request_url($url,$data,'POST');
         //根据返回码,如果错误则抛错
-        Log::info(json_encode($ret));
+        // Log::info(json_encode($ret));
         if($ret['code']!= '0000'){
             err('request_url请求错误');
         }

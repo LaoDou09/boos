@@ -60,7 +60,7 @@ class BookOrderProcess implements Middleware {
                 $request['book_orders'] = $book_orders;
             }else{
                 //模板记账
-                Log::info('-----模板记账开始-----::');
+                Log::info('-----模板记账开始-----::'.$template['batch_detail_id']);
                 //这里一定要new出新的收银单,防止单实例情况
                 $order = new FinanceBookOrder();
                 $order['book_title'] = $template['book_title'];

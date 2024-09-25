@@ -11,7 +11,7 @@ class FinanceBalance extends Api {
     public function getUserBalance()
     {
         $userInfo = getUserInfo();
-        $this->ok(app(FinanceBalanceService::class)->getUserBalance($userInfo));
+        $this->ok(app(FinanceBalanceService::class)->getUserBalance($userInfo['user_id']));
     }
 
 }

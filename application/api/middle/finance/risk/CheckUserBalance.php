@@ -11,9 +11,7 @@ class CheckUserBalance implements Middleware {
     public function handle($request, Closure $next)
     {
         $cash_order = $request['cash_order'];
-        $user_info = model(UserInfo::class)->getByUserId($cash_order['user_id']);
-        $balances = app(FinanceBalanceService::class)->getUserBalance($user_info);
-        $cash_order = $request['cash_order'];
+        $balances = app(FinanceBalanceService::class)->getUserBalance($request['user_id']);
         foreach($balances as $value){
             if($value['account_type'] == '10'){
                 if($value['balance'] < $cash_order['amount']){

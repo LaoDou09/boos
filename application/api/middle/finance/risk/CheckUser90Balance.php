@@ -14,8 +14,7 @@ class CheckUser90Balance implements Middleware {
     {
 
         $cash_order = $request['cash_order'];
-        $user_info = model(UserInfo::class)->getByUserId($cash_order['user_id']);
-        $balances = app(FinanceBalanceService::class)->getUserBalance($user_info);
+        $balances = app(FinanceBalanceService::class)->getUserBalance($request['user_id']);
         foreach($balances as $value){
 
             if($value['account_type'] == '90'){

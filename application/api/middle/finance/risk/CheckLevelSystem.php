@@ -11,8 +11,7 @@ class CheckLevelSystem implements Middleware {
     public function handle($request, Closure $next)
     {
         $level_system = $request['level_system'];
-        $userInfo = getUserInfo();
-        $balances = app(FinanceBalanceService::class)->getUserBalance($userInfo);
+        $balances = app(FinanceBalanceService::class)->getUserBalance($request['user_id']);
         foreach($balances as $value){
 
             if($value['account_type'] == $level_system['account_type1']){

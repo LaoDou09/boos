@@ -57,6 +57,7 @@ class FinanceCashService {
 
 
     public function main(FinanceCashOrder $cash_order,$risk_check = true){
+        $request['user_id'] = $cash_order['user_id'];
         $request['cash_order'] = $cash_order; 
         $request['risk_check'] = $risk_check;
         $result = service(FinanceCashService::class)

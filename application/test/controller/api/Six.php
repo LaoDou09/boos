@@ -5,6 +5,7 @@ use app\admin\model\finance\FinanceBookOrder;
 use app\admin\model\finance\FinanceCashOrder;
 use app\admin\model\user\UserInfo;
 use app\admin\model\user\UserTeam;
+use app\api\service\finance\FinanceRiskService;
 use app\common\controller\Api;
 use app\test\model\Test;
 use think\Db;
@@ -25,17 +26,35 @@ class Six extends Api {
 
     public function test1(){
         $ret = [];
-        $records = model(FinanceBookOrder::class)
-        ->where('account_type','10')
-        ->where('status','00')
-        ->where('account_object','80')
-        ->whereTime('create_time','2024-09-06')
-        ->field('process_id,SUM(debit_amount) as sub_debit ,SUM(credit_amount) as sub_credit')
-        ->group('process_id')
-        ->select();
+
+        $account_type = '10';
+        // $account_type = '91';
+
         $time = date('Y-m-d',strtotime('-6 day'));
-        $lastSql= FinanceBookOrder::getLastSql();
-        $this->ok($time);
+        $model = model(FinanceBookOrder::class);
+        if($account_type =='10'){
+            $model->where(function($query){
+                $query->whereOr('book_code','K9001');
+                $query->whereOr('book_code','K2001');
+                $query->whereOr('book_code','K3001');
+
+            });
+        }else if ($account_type == '91'){
+            $model->where('book_code','K8001');
+        }
+
+        $records = $model
+            ->where('account_type',$account_type)
+            ->where('status','00')
+            ->where('account_object','80')
+            ->whereTime('create_time','>=', $time.'00:00:00')
+            ->whereTime('create_time','<=', $time.'23:59:59')
+            ->field('process_id,SUM(debit_amount) as sum_debit ,SUM(credit_amount) as sum_credit')
+            ->group('process_id')
+            ->select();
+        $lastSql = $model->getLastSql();
+        // halt($lastSql) ;
+        $this->ok($lastSql);
 
     }
 
@@ -75,6 +94,14 @@ class Six extends Api {
         $ret = model(FinanceCashOrder::class)
             ->limit(4,10)
             ->select();
+        $this->ok($ret);
+    }
+
+    public function test5(){
+        $data = model(FinanceCashOrder::class);
+        $data['user_id'] ='1142889689825594113';
+        $request['cash_order'] = $data;
+        $ret = app(FinanceRiskService::class)->check('K2001',$request);
         $this->ok($ret);
     }
 }

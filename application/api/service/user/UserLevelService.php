@@ -29,8 +29,10 @@ class UserLevelService {
     public function buyLevel($data){
 
         //先进行风控检查
+        $user_info = getUserInfo();
         $request = [
-            'user_info' =>getUserInfo(),
+            'user_id' => $user_info['user_id'],
+            'user_info' =>$user_info,
             'level_system' => $this->getLevelSystem($data['id']),
             'promotion_code' =>$data['promotion_code']
         ];

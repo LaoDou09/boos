@@ -1,1 +1,1 @@
-php think crud -t user_release_coupon -c user/UserReleaseCoupon -u 1 --force=true
+php think crud -t fin_black_list -c finance/FinanceBlackList -u 1 --force=true

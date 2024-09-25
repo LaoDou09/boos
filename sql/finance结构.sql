@@ -253,3 +253,19 @@ CREATE TABLE `fin_risk_template`  (
   INDEX `book_code_idx`(`book_code`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '风控模板' ROW_FORMAT = DYNAMIC;
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+DROP TABLE IF EXISTS `fin_black_list`;
+CREATE TABLE `fin_black_list`  (
+  `id` varchar(21)  NOT NULL DEFAULT '' COMMENT 'id',
+  `title` varchar(50)  NOT NULL COMMENT '标题',
+  `user_id` varchar(21)  NOT NULL COMMENT '用户id',
+  `user_mobile` varchar(11)  NULL DEFAULT '' COMMENT '用户手机',
+  `book_code` char(5)  NOT NULL COMMENT '记账码',
+  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `user_id`(`user_id`) USING BTREE,
+  INDEX `book_code_idx`(`book_code`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务黑名单' ROW_FORMAT = DYNAMIC;
+SET FOREIGN_KEY_CHECKS = 1;
