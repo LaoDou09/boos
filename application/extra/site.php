@@ -62,4 +62,5 @@ return array (
   'charge_back_20' => 'K1052',
   'transfer_91' => 'T1091',
   'transfer_10' => 'T1010',
+  'buy_level_again' => 'K9002',
 );

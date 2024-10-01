@@ -7,6 +7,7 @@ use app\admin\model\user\UserInfo;
 use app\api\library\Sign;
 use Exception;
 use think\Db;
+use think\Hook;
 use think\Log;
 
 class FinanceBalanceService {
@@ -76,6 +77,7 @@ class FinanceBalanceService {
             $model = model(FinanceBookOrder::class)->getById($order['id']);
             $model->status = '00';
             $model->isUpdate(true)->save();
+            Hook::listen('book_order_success',$order);
         }
         
 

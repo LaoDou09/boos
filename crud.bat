@@ -1,1 +1,1 @@
-php think crud -t fin_black_list -c finance/FinanceBlackList -u 1 --force=true
+php think crud -t report_user_income -c report/ReportUserIncome -u 1 --force=true

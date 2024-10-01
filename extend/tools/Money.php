@@ -11,37 +11,45 @@ class Money {
     public $strategy = PHP_ROUND_HALF_UP;
     public function calc($num1,$op='+',$num2)
     {
-        switch ($op){
-            case '+' :
-                return $this->add($num1,$num2);
-                break;
-            case '-' :
-                return $this->sub($num1,$num2);
-                break;
-            case '*' :
-                return $this->mul($num1,$num2);
-                break;
-            case '/' :
-                return $this->div($num1,$num2);
-                break;
-            case '==' :
-                return $this->comp($num1,$num2);
-                break;
-            case '>' :
-                return $this->gt($num1,$num2);
-                break;
-            case '>=' :
-                return $this->gte($num1,$num2);
-                break;
-            case '<' :
-                return $this->lt($num1,$num2);
-                break;
-            case '<=' :
-                return $this->lte($num1,$num2);
-            default :
-                break;
-
+        if(is_numeric($num1) && is_numeric($num2)){
+            switch ($op){
+                case '+' :
+                    return $this->add($num1,$num2);
+                    break;
+                case '-' :
+                    return $this->sub($num1,$num2);
+                    break;
+                case '*' :
+                    return $this->mul($num1,$num2);
+                    break;
+                case '/' :
+                    return $this->div($num1,$num2);
+                    break;
+                case '==' :
+                case 'eq' :
+                    return $this->comp($num1,$num2);
+                    break;
+                case '>' :
+                case 'gt':
+                    return $this->gt($num1,$num2);
+                    break;
+                case '>=' :
+                case 'gte':
+                    return $this->gte($num1,$num2);
+                    break;
+                case '<' :
+                case 'lt' :
+                    return $this->lt($num1,$num2);
+                    break;
+                case '<=' :
+                case 'lte':
+                    return $this->lte($num1,$num2);
+                default :
+                    break;
+    
+            }
         }
+        return $num1 == $num2;
     }
 
     //加

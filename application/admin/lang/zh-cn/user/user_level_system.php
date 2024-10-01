@@ -11,7 +11,7 @@ return [
     'Account_type2' => '帐户类型2',
     'Price2'        => '金额2',
     'Account_type3' => '帐户类型3',
-    'Price3'        => '金额3',
+    'Price3'        => '收益限额',
     'Rights1'       => '权益1',
     'Rights2'       => '权益2',
     'Rights3'       => '权益3',

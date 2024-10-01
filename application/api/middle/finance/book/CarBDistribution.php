@@ -3,20 +3,19 @@
 namespace app\api\middle\finance\book;
 
 use app\admin\model\finance\FinanceBookOrder;
+use app\admin\model\report\ReportUserIncome;
 use app\admin\model\user\UserInfo;
 use app\admin\model\user\UserLevelDict;
-use app\admin\model\user\UserTeam;
 use app\api\library\Sign;
 use Closure;
 use tools\service\Middleware;
 
 class CarBDistribution implements Middleware {
-
-
+    
+    public $userIncomeLimits;
     public function handle($request, Closure $next)
     {
 
-        $template = $request['template'];
         $cash_order = $request['cash_order'];
         $details= json_decode($cash_order['details'],true);
         //找出所有上级,按照先后顺序,这里由于事务问题,没有提交,无法查询
@@ -28,6 +27,9 @@ class CarBDistribution implements Middleware {
             ->whereIn('user_id',$path)
             ->orderRaw("field(user_id,$path) desc")
             ->select();
+
+        //todo这里需要把收入超限用户找出来
+        $this->userIncomeLimits = $this->getUserIncomeLimits($path);
 
         //先算三级的分润
         $level_dict = model(UserLevelDict::class)->where('level_key','user_level')->select();
@@ -77,10 +79,17 @@ class CarBDistribution implements Middleware {
             $order['book_category'] = $template['book_category'];
             $order['user_name'] = $value['user_name'];
             $order['process_id'] = $value['user_id'];
-            $order['debit_amount'] = $this->getDebitAmount($template,$value);
-            $order['credit_amount'] = $this->getCreditAmount($template,$value);
-            $order['direction'] = $template['direction'];
 
+            //如果属于受限用户,则amount=0;
+            if(in_array( $value['user_id'],$this->userIncomeLimits)){
+                $order['debit_amount'] = 0;
+                $order['credit_amount'] = 0;
+            }else{
+                $order['debit_amount'] = $this->getDebitAmount($template,$value);
+                $order['credit_amount'] = $this->getCreditAmount($template,$value);
+            }
+  
+            $order['direction'] = $template['direction'];
             $remark = sprintf('推荐:%u,服务:%u,管理:%u',$value['amount']['promotion'],$value['amount']['service'],$value['amount']['manage']);
             $order['remark'] = $remark;
             $order['sign'] = Sign::makeBookSign($order);
@@ -297,6 +306,20 @@ class CarBDistribution implements Middleware {
     }
 
 
+    private function getUserIncomeLimits($path){
+
+        $records = model(ReportUserIncome::class)
+            ->whereIn('user_id',$path)
+            ->select();
+        foreach($records as $record){
+            $total = money()->add($record['promotion'],$record['blind']);
+            $total = money()->add($total,$record['profit']);
+            $ret = money()->gte($total,$record['limit']);
+            if($ret){
+                $this->userIncomeLimits[] = $record['user_id'];
+            }
+        }
+    }
 
 
 }

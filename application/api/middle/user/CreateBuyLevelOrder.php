@@ -14,7 +14,7 @@ class CreateBuyLevelOrder implements Middleware {
         $level_system = $request['level_system'];
 
         $userInfo = $request['user_info'];
-        $promotion = $request['promotion'];
+        
         //下单,直接余额支付
         $order = model(UserLevelSaleOrder::class);
         $order['title'] = $level_system['title'];
@@ -33,9 +33,14 @@ class CreateBuyLevelOrder implements Middleware {
         $order['account_type3'] = $level_system['account_type3'];
         $order['price3'] = $level_system['price3'];
 
-        $order['promotion_code'] = $promotion['promotion_code'];
-        $order['promotion_user_id'] = $promotion['user_id'];
-        $order['promotion_login_name'] = $promotion['login_name'];
+
+        $promotion = $request['promotion'];
+        if($promotion != ''){
+            $order['promotion_code'] = $promotion['promotion_code'];
+            $order['promotion_user_id'] = $promotion['user_id'];
+            $order['promotion_login_name'] = $promotion['login_name'];
+        }
+
         //10 下单
         $order['status'] = "10";
         $order['expire_time'] = date('Y-m-d H:i:s', strtotime('+10minute'));

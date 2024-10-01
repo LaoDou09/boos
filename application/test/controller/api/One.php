@@ -112,4 +112,17 @@ class One extends Api {
         $this->ok($time);
     }
 
+
+    public function test11(){
+        $data[] = '1';
+        $data[] = '2';
+
+        if(in_array('3',$data)){
+            $this->ok('yes');
+        }else{
+            $this->ok('no');
+        }
+
+
+    }
 }

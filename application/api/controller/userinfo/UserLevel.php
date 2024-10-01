@@ -39,4 +39,22 @@ class UserLevel extends Api {
         $this->ok($service->buyLevel($data));
     }
 
+    //复购
+    public function buyLevelAgain(){
+            //验证参数
+            $rule = [
+                'id' =>'require',
+            ];
+            $data = [
+                'id' =>$this->request->post('id'),
+            ];
+    
+            $ret = $this->validate($data,$rule);
+            if($ret != 1){
+                err($ret);
+            }
+            $service = app(UserLevelService::class);
+            $this->ok($service->buyLevelAgain($data));  
+    }
+
 }

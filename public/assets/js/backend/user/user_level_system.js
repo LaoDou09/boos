@@ -36,7 +36,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'price1', title: __('Price1')},
                         {field: 'account_type2', title: __('Account_type2')},
                         {field: 'price2', title: __('Price2')},
-                        {field: 'account_type3', title: __('Account_type3')},
+                        // {field: 'account_type3', title: __('Account_type3')},
                         {field: 'price3', title: __('Price3')},
                         {field: 'rights1', title: __('Rights1'), operate: 'LIKE'},
                         {field: 'rights2', title: __('Rights2'), operate: 'LIKE'},

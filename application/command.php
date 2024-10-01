@@ -12,6 +12,7 @@
 
 use app\admin\command\crontab\ReleaseCoupon;
 use app\admin\command\crontab\TransferMoneyToCarSys;
+use app\admin\command\temp\InitUserIncome;
 
 return [
     'app\admin\command\Crud',
@@ -21,5 +22,6 @@ return [
     'app\admin\command\Addon',
     'app\admin\command\Api',
     ReleaseCoupon::class,
-    TransferMoneyToCarSys::class
+    TransferMoneyToCarSys::class,
+    InitUserIncome::class
 ];

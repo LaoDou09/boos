@@ -5,6 +5,7 @@ use app\admin\model\finance\FinanceBookOrder;
 use app\admin\model\finance\FinanceCashOrder;
 use app\admin\model\user\UserInfo;
 use app\admin\model\user\UserTeam;
+use app\api\middle\finance\cash\BookPolicy;
 use app\api\service\finance\FinanceRiskService;
 use app\common\controller\Api;
 use app\test\model\Test;
@@ -103,5 +104,15 @@ class Six extends Api {
         $request['cash_order'] = $data;
         $ret = app(FinanceRiskService::class)->check('K2001',$request);
         $this->ok($ret);
+    }
+
+
+    public function test6(){
+        $request['book_code'] = 'K9002';
+
+        $request = service()->pass($request)->middle(BookPolicy::class)->run();
+        $this->ok($request);
+
+
     }
 }
