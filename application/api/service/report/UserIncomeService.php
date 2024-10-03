@@ -6,6 +6,7 @@ use app\admin\model\finance\FinanceBookOrder;
 use app\admin\model\report\ReportUserIncome;
 use app\admin\model\user\UserInfo;
 use app\admin\model\user\UserLevelSystem;
+use think\Log;
 
 class UserIncomeService {
    
@@ -38,22 +39,21 @@ class UserIncomeService {
         $record->isUpdate(true)->save();
     }
 
-    public function addUserIncome(FinanceBookOrder $order){
-        //只记录用户的收益
-        if($order['account_type']=='80'){
-            switch($order['book_code']){
-                //推广收益
-                case 'K9001' :
-                    $this->updatePromotion($order);
-                //盲盒收益
-                case 'K5XX' :
-                    $this->updateBlind($order);
-                //积分分红
-                case 'K3XXX' :
-                    $this->updateProfit($order);
+    public function addUserIncome($order){
+        switch($order['book_code']){
+            //推广收益
+            case 'K9001' :
+            case 'K9002' :
+                $this->updatePromotion($order);
+            //盲盒收益
+            case 'K5XX' :
+                $this->updateBlind($order);
+            //积分分红
+            case 'K3XXX' :
+                $this->updateProfit($order);
 
-            }
         }
+
     }
 
 
@@ -77,6 +77,4 @@ class UserIncomeService {
         $record->isUpdate(true)->save();
 
     }
-
-
 }

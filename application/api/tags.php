@@ -6,9 +6,5 @@ use app\api\hook\UserIncomeHook;
 return [
     'user_info_ok' => [
         FinanceAccountHook::class
-    ],
-
-    'book_order_success' => [
-        UserIncomeHook::class
-    ],
+    ]
 ];

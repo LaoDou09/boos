@@ -35,8 +35,8 @@ class One extends Api {
     }
     public function test2 (){
         $claims = new Claims();
-        $claims->setId("1142889689825594114");
-        $claims->setName("13000000002");
+        $claims->setId("1943383533356518118");
+        $claims->setName("13000000003");
         $claims->setRole("出行");
         $token = jwtToken($claims)->getToken();
         $this->success("ok",$token);

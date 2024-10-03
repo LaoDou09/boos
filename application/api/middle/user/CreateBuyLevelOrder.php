@@ -22,7 +22,7 @@ class CreateBuyLevelOrder implements Middleware {
         $order['login_name'] = $userInfo['login_name'];
         $order['user_name'] = $userInfo['user_name'];
 
-        $order['trade_type'] = $level_system['trade_type'];
+        $order['trade_type'] = $request['trade_type'];
         $order['level_key'] = $level_system['level_key'];
         $order['code'] = $level_system['code'];
 

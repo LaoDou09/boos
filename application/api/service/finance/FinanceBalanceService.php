@@ -4,7 +4,9 @@ namespace app\api\service\finance;
 use app\admin\model\finance\FinanceBalance;
 use app\admin\model\finance\FinanceBookOrder;
 use app\admin\model\user\UserInfo;
+use app\api\hook\UserIncomeHook;
 use app\api\library\Sign;
+use app\api\service\report\UserIncomeService;
 use Exception;
 use think\Db;
 use think\Hook;
@@ -77,7 +79,10 @@ class FinanceBalanceService {
             $model = model(FinanceBookOrder::class)->getById($order['id']);
             $model->status = '00';
             $model->isUpdate(true)->save();
-            Hook::listen('book_order_success',$order);
+            //命令行模式下执行的Hook好像有问题,暂时直接调用,应该redis模式
+            if($model['account_object'] == '80'){
+                app(UserIncomeService::class)->addUserIncome($model);
+            }
         }
         
 

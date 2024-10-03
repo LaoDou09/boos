@@ -54,7 +54,7 @@ class UserLevel extends Api {
                 err($ret);
             }
             $service = app(UserLevelService::class);
-            $this->ok($service->buyLevelAgain($data));  
+            $this->ok($service->buyLevelAgain($data['id']));  
     }
 
 }

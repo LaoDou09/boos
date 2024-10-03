@@ -12,7 +12,7 @@ use tools\service\Middleware;
 
 class CarBDistribution implements Middleware {
     
-    public $userIncomeLimits;
+    public $userIncomeLimits = [];
     public function handle($request, Closure $next)
     {
 
@@ -29,7 +29,7 @@ class CarBDistribution implements Middleware {
             ->select();
 
         //todo这里需要把收入超限用户找出来
-        $this->userIncomeLimits = $this->getUserIncomeLimits($path);
+        $this->getUserIncomeLimits($path);
 
         //先算三级的分润
         $level_dict = model(UserLevelDict::class)->where('level_key','user_level')->select();
@@ -81,7 +81,7 @@ class CarBDistribution implements Middleware {
             $order['process_id'] = $value['user_id'];
 
             //如果属于受限用户,则amount=0;
-            if(in_array( $value['user_id'],$this->userIncomeLimits)){
+            if(in_array($value['user_id'],$this->userIncomeLimits)){
                 $order['debit_amount'] = 0;
                 $order['credit_amount'] = 0;
             }else{

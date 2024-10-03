@@ -13,6 +13,9 @@ class GetUserTeam implements Middleware {
     {
         $user_info = $request['user_info'];
         $user_team = model(UserTeam::class)->getByUserId($user_info['user_id']);
+        if(!$user_team){
+            err('请先购买');
+        }
         $request['user_team'] = $user_team;
         return $next($request);
     }
