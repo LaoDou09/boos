@@ -14,7 +14,7 @@ use app\api\middle\user\PayBuyLevelOrder;
 use app\api\middle\user\UpdateBuyLevelOrder;
 use app\api\middle\user\UpdateUserIncomeLimit;
 use app\api\middle\user\UpdateUserLevel;
-
+use think\Log;
 
 class UserLevelService {
 
@@ -31,7 +31,7 @@ class UserLevelService {
     }
 
     public function buyLevel($data){
-
+        Log::info('用户等级购买');
         //先进行风控检查
         $user_info = getUserInfo();
         $request = [
@@ -72,6 +72,7 @@ class UserLevelService {
     }
 
     public function buyLevelAgain($id){
+        Log::info('用户复购');
         $user_info = getUserInfo();
         $request = [
             'user_id' => $user_info['user_id'],

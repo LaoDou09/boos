@@ -40,17 +40,21 @@ class UserIncomeService {
     }
 
     public function addUserIncome($order){
+        Log::info('增加用户收入');
         switch($order['book_code']){
             //推广收益
             case 'K9001' :
             case 'K9002' :
                 $this->updatePromotion($order);
+                break;
             //盲盒收益
             case 'K5XX' :
                 $this->updateBlind($order);
+                break;
             //积分分红
             case 'K3XXX' :
                 $this->updateProfit($order);
+                break;
 
         }
 

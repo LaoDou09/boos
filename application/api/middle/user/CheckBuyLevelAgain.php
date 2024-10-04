@@ -18,6 +18,10 @@ class CheckBuyLevelAgain implements Middleware {
         if(!$book_code){
             err('此交易类型没有记账码对应,暂不支持');
         }
+        $userInfo = $request['user_info'];
+        if($userInfo['user_level'] == 'U1000'){
+            err('当前会员等级不可购买!');
+        }
 
         $request = app(FinanceRiskService::class)->check($book_code,$request);
         return $next($request);
