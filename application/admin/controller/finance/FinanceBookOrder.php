@@ -22,6 +22,7 @@ class FinanceBookOrder extends Backend
     {
         parent::_initialize();
         $this->model = new \app\admin\model\finance\FinanceBookOrder;
+        $this->assignModelOption('model_options',\app\admin\model\finance\FinanceBookOrder::$options);
         $this->view->assign("statusList", $this->model->getStatusList());
     }
 

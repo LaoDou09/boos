@@ -22,6 +22,7 @@ class FinanceBookTemplate extends Backend
     {
         parent::_initialize();
         $this->model = new \app\admin\model\finance\FinanceBookTemplate;
+        $this->assignModelOption('model_options',\app\admin\model\finance\FinanceBookTemplate::$options);
 
     }
 

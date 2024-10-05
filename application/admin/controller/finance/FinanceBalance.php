@@ -22,6 +22,7 @@ class FinanceBalance extends Backend
     {
         parent::_initialize();
         $this->model = new \app\admin\model\finance\FinanceBalance;
+        $this->assignModelOption('model_options',\app\admin\model\finance\FinanceBalance::$options);
 
     }
 

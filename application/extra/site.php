@@ -4,7 +4,7 @@ return array (
   'name' => 'BOSS',
   'beian' => '',
   'cdnurl' => '',
-  'version' => '1.0.27',
+  'version' => '1.0.35',
   'timezone' => 'Asia/Shanghai',
   'forbiddenip' => '',
   'languages' => 

@@ -9,8 +9,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     // add_url: 'finance/finance_balance/add',
                     // edit_url: 'finance/finance_balance/edit',
                     // del_url: 'finance/finance_balance/del',
-                    multi_url: 'finance/finance_balance/multi',
-                    import_url: 'finance/finance_balance/import',
+                    // multi_url: 'finance/finance_balance/multi',
+                    // import_url: 'finance/finance_balance/import',
                     table: 'fin_balance',
                 }
             });
@@ -31,13 +31,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'user_name', title: __('User_Name'), operate: 'LIKE',sortable:true},
                         {field: 'process_id', title: __('Process_id'), operate: 'LIKE',sortable:true},
                         // {field: 'account_id', title: __('Account_id'), operate: 'LIKE',sortable:true},
-                        {field: 'account_type', title: __('Account_type'),sortable:true},
-                        {field: 'account_object', title: __('Account_object'),sortable:true},
+                        {field: 'account_type', title: __('Account_type'),sortable:true,formatter: Table.api.formatter.label, searchList: Config.model_options.account_type},
+                        {field: 'account_object', title: __('Account_object'),sortable:true,formatter: Table.api.formatter.label, searchList: Config.model_options.account_object},
 
                         {field: 'balance', title: __('Balance'),sortable:true},
                         {field: 'open_balance', title: __('Open_balance'),sortable:true},
                         {field: 'occurred_amount', title: __('Occurred_amount'),sortable:true},
-                        {field: 'direction', title: __('Direction'),sortable:true},
+                        {field: 'direction', title: __('Direction'),sortable:true,formatter: Table.api.formatter.label, searchList: Config.model_options.direction},
                         {field: 'close_order', title: __('Close_order'), operate: 'LIKE',sortable:true},
                         // {field: 'sign', title: __('Sign'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
                         {field: 'create_time', title: __('Create_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false,sortable:true},

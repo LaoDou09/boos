@@ -35,6 +35,8 @@ class UserService {
         //如果没有,则走注册流程,生成用户user和user_info信息
         $claims = JwtToken()->verifyToken($token);
         $userInfo = $this->mUserInfo->where('user_id',$claims->getId())->find();
+        // $lastSql = $this->mUserInfo->getLastSql();
+        // Log::info($lastSql);
         if($userInfo){
             $this->auth->direct($userInfo->id);
             $user=$this->auth->getUserinfo();
