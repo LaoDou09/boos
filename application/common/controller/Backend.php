@@ -230,7 +230,6 @@ class Backend extends Controller
         $this->assign('admin', Session::get('admin'));
     }
     protected function assignModelOption($name = '',$value = ''){
-        //加载自定义配置  巩汉飞 2020/09/18
         $name = $name?:'model_options';
         $value = $value?:($this->model::$options??[]);
         $this->assign($name,$value);
