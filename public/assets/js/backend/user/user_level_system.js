@@ -38,11 +38,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'price2', title: __('Price2')},
                         // {field: 'account_type3', title: __('Account_type3')},
                         {field: 'price3', title: __('Price3')},
+                        {field: 'rights5', title: __('Rights5'), operate: 'LIKE'},
+
                         {field: 'rights1', title: __('Rights1'), operate: 'LIKE'},
                         {field: 'rights2', title: __('Rights2'), operate: 'LIKE'},
                         {field: 'rights3', title: __('Rights3'), operate: 'LIKE'},
                         {field: 'rights4', title: __('Rights4'), operate: 'LIKE'},
-                        {field: 'rights5', title: __('Rights5'), operate: 'LIKE'},
                         {field: 'image1', title: __('Image1'), events: Table.api.events.image, formatter: Table.api.formatter.image, operate: false},
                         {field: 'image2', title: __('Image2'), events: Table.api.events.image, formatter: Table.api.formatter.image, operate: false},
                         {field: 'image3', title: __('Image3'), events: Table.api.events.image, formatter: Table.api.formatter.image, operate: false},

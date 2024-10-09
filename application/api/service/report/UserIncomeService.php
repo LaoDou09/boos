@@ -2,7 +2,6 @@
 
 namespace app\api\service\report;
 
-use app\admin\model\finance\FinanceBookOrder;
 use app\admin\model\report\ReportUserIncome;
 use app\admin\model\user\UserInfo;
 use app\admin\model\user\UserLevelSystem;
@@ -19,6 +18,12 @@ class UserIncomeService {
        $ret = money()->gte($total,$record['limit']);
        return $ret;
     }
+    //检查盲盒限额
+    public function checkBlindLimit($user_id){
+        $record = model(ReportUserIncome::class)->getByUserId($user_id);
+        $ret = money()->gte($record['blind'],$record['blind_limit']);
+        return $ret;
+     }
 
     //buy_level时创建记录
     public function createRecord(UserInfo $userInfo,UserLevelSystem $levelSystem){
@@ -29,6 +34,7 @@ class UserIncomeService {
         $record['blind'] = 0;
         $record['profit'] = 0;
         $record['limit'] = $levelSystem['price3'];
+        $record['blind_limit'] = $levelSystem['rights5'];
         $record->isUpdate(false)->save();
     }
 
@@ -36,6 +42,8 @@ class UserIncomeService {
     public function updateUserLimit(UserInfo $userInfo,UserLevelSystem $levelSystem){
         $record = model(ReportUserIncome::class)->getByUserId($userInfo['user_id']);
         $record['limit'] = money()->add($record['limit'],$levelSystem['price3']);
+        $record['blind_limit'] = money()->add($record['blind_limit'],$levelSystem['rights5']);
+
         $record->isUpdate(true)->save();
     }
 

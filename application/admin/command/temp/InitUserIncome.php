@@ -42,6 +42,8 @@ class InitUserIncome extends Command {
                         $data['user_name'] = $record['user_name'];
                         $data['promotion'] = $sum;
                         $data['limit'] = $this->getLimit($record,$levelSystem);
+                        $data['blind_limit'] = $this->getBlindLimit($record,$levelSystem);
+
                         $output->info(json_encode($data));
                         $data->isUpdate(false)->save();
                 }
@@ -53,6 +55,13 @@ class InitUserIncome extends Command {
         foreach($levelSystem as $v){
             if($v['code']==$userInfo['user_level']){
                 return $v['price3'];
+            }
+        }
+    }
+    public function getBlindLimit($userInfo,$levelSystem){
+        foreach($levelSystem as $v){
+            if($v['code']==$userInfo['user_level']){
+                return $v['rights5'];
             }
         }
     }

@@ -18,7 +18,8 @@ CREATE TABLE `report_user_income`  (
   `blind` int(20)  NULL DEFAULT 0 COMMENT '盲盒收益',
   `profit` int(20)  NULL DEFAULT 0 COMMENT '分红收益',
   `limit` int(20)  NULL DEFAULT 0 COMMENT '收益限额',
-
+  `blind_limit` int(20)  NULL DEFAULT 0 COMMENT '盲盒限额',
+  
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,

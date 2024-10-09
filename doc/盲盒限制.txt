@@ -1,0 +1,7 @@
+1.report_user_income 新增字段blind_limit ,所以此表需要重新初始化php think InitUserIncome
+2.等级盲盒受限金额由等级系统的right5来定义
+3.初次购买等级时创建用户report_user_income记录,填充limit和blind_limit数据
+4.复购时limit和blind_limit累加
+5.用户账户记账时汇总累加 推广奖励,盲盒奖励,以及分红奖励
+但目前不知盲盒奖励记账码,暂时无法累计
+6.新增盲盒限额检查中间件 app\api\middle\finance\risk\CheckUserBlindLimit,可在购买盲盒时进行检查

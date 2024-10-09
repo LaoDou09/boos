@@ -32,6 +32,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'blind', title: __('Blind')},
                         {field: 'profit', title: __('Profit')},
                         {field: 'limit', title: __('Limit')},
+                        {field: 'blind_limit', title: __('Blind_limit')},
                         {field: 'create_time', title: __('Create_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false},
                         {field: 'update_time', title: __('Update_time'), operate:'RANGE', addclass:'datetimerange', autocomplete:false},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}

@@ -16,7 +16,7 @@ return [
     'Rights2'       => '权益2',
     'Rights3'       => '权益3',
     'Rights4'       => '权益4',
-    'Rights5'       => '权益5',
+    'Rights5'       => '盲盒限额',
     'Image1'        => '图片1',
     'Image2'        => '图片2',
     'Image3'        => '图片3',
